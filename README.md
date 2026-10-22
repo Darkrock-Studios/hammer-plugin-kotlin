@@ -14,7 +14,8 @@ with each scene's word count. Replace it with your own.
    may call; the writer sees that list when they install it.
 4. Replace `src/commonMain/kotlin/WordCount.kt` with your plugin's logic, and wire it up in
    `src/wasmWasiMain/kotlin/Exports.kt`.
-5. Choose a license. This template is MIT; replace `LICENSE` with your own if you prefer.
+5. Choose a license. This template is under 0BSD, so you can use it however you like without keeping
+   its notice; replace `LICENSE` with your plugin's own.
 
 ## Build and test
 
