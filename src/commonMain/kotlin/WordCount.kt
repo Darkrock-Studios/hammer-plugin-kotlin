@@ -5,6 +5,7 @@ import hammer.ops.Hammer
 import hammer.ops.SceneKind
 import hammer.ops.SceneNode
 import hammer.progress
+import hammer.words
 import kotlinx.serialization.Serializable
 
 /** The action's first page: the manifest's `[[actions.field]]`. */
@@ -24,7 +25,7 @@ fun countWords(request: ActionRequest): ActionReply {
 
 	val counts = scenes.mapIndexed { i, scene ->
 		progress(i.toDouble() / scenes.size, "Counting ${scene.name}")
-		scene.name to wordsIn(Hammer.scene.read(request.project, scene.id).markdown)
+		scene.name to Hammer.scene.read(request.project, scene.id).markdown.words().size
 	}
 	return ActionReply.document(
 		buildString {
@@ -39,6 +40,3 @@ fun countWords(request: ActionRequest): ActionReply {
 
 /** This node's scenes in story order, groups opened up. */
 private fun SceneNode.scenes(): List<SceneNode> = if (kind == SceneKind.Scene) listOf(this) else children.flatMap { it.scenes() }
-
-/** Words are runs that hold at least one letter or digit, so dashes and stray punctuation don't count. */
-fun wordsIn(text: String): Int = text.split(' ', '\n', '\t').count { it.any(Char::isLetterOrDigit) }

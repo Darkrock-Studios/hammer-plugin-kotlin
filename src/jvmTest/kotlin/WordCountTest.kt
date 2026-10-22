@@ -46,9 +46,4 @@ class WordCountTest {
 		assertEquals("# Word count\n\n- Storm: 3\n", driver().open().fill("scenes", listOf(2)).run().page?.markdown)
 		assertEquals("# Word count\n\n- Calm: 1\n", driver("scene", 3).open().run().page?.markdown)
 	}
-
-	@Test
-	fun `words are runs of letters and digits`() {
-		assertEquals(4, wordsIn("She said — twice — “no.”"))
-	}
 }
