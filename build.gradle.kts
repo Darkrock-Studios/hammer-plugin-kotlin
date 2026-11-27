@@ -1,3 +1,3 @@
 plugins {
-	id("com.darkrockstudios.hammer.plugin") version "0.8.0"
+	id("com.darkrockstudios.hammer.plugin") version "0.9.0"
 }
